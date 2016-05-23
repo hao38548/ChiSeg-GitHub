@@ -18,7 +18,7 @@ float CalF_measure(UINT& TP, UINT& FN, UINT& FP, string right_file, string real_
 	ofstream out;
 	in1.open(right_file, ios::in);
 	in2.open(real_file, ios::in);
-	out.open(result_file, ios::out);
+	out.open(result_file, ios::out|ios::app);
 	while (getline(in1, right_code))
 	{
 		getline(in2, real_code);
@@ -55,9 +55,11 @@ float CalF_measure(UINT& TP, UINT& FN, UINT& FP, string right_file, string real_
 	}
 	in1.close();
 	in2.close();
-	out.close();
+	
 	//º∆À„F_measure
 	F_measure = 2.000 * TP / (2 * TP + FP + FN);
+	out << F_measure << endl;
+	out.close();
 	return F_measure;
 }
 
